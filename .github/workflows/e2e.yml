@@ -1,0 +1,32 @@
+name: e2e Tests
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+jobs:
+  full-e2e:
+    env:
+      HOME: /root
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    container: 
+      image: mcr.microsoft.com/playwright:v1.53.2
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: npm ci
+    - name: Create .env file
+      run: |
+        echo LOGIN_URL="${{ secrets.LOGIN_URL }}" >> .env
+        echo NG_BASE_URL="${{ secrets.NG_BASE_URL }}" >> .env
+        echo USER_EMAIL="${{ secrets.USER_EMAIL }}" >> .env
+        echo USER_PASSWORD="${{ secrets.USER_PASSWORD }}" >> .env
+    - name: Run e2e tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report-html
+        path: playwright-report/
+        retention-days: 7
