@@ -1,15 +1,6 @@
-import { Page, Locator } from '@playwright/test';
+import { BaseComponent } from '../base.component';
 
-export class LoginPage {
-  constructor(private page: Page) {}
-
-  private async secureFill(locator: Locator, value: string) {
-    await locator.fill('*****'); // masks the value in the report
-    await locator.evaluate((el, val) => {
-      (el as HTMLInputElement).value = val;
-    }, value);
-  }
-
+export class LoginPage extends BaseComponent {
   async open() {
     await this.page.goto(process.env.LOGIN_URL!);
   }

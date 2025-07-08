@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/login.page';
+import { App } from '../app/app';
 
 test.describe('Send Authorization Tests', () => {
   test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.open();
-    await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
+    const app = new App(page);
+    await app.loginPage.open();
+    await app.loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
   });
 
   test('Test should Send Authorization', async ({ page }) => {
