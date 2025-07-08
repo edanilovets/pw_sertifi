@@ -19,5 +19,8 @@ test(
     await page.getByRole('textbox', { name: 'Password' }).click();
     await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
     await page.getByRole('button', { name: 'log in' }).click();
+    // Wait for the page to load and the profile button to appear
+    await page.locator('#profile-button-popup').getByRole('link').click();
+    await expect(page.getByText(process.env.USER_EMAIL!)).toBeVisible();
   },
 );
