@@ -13,7 +13,7 @@ test.describe('Login Tests', () => {
       await app.login.open();
       await app.login.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
       // Wait for the page to load and the profile button to appear
-      await app.dashboard.isUserLoggedIn(process.env.USER_EMAIL!);
+      await app.dashboard.expectUserToBeLoogedIn(process.env.USER_EMAIL!);
     },
   );
 });

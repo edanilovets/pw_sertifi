@@ -6,7 +6,7 @@ export class DashboardPage extends BaseComponent {
     await this.page.goto(process.env.NG_BASE_URL!);
   }
 
-  async isUserLoggedIn(userEmail: string) {
+  async expectUserToBeLoogedIn(userEmail: string) {
     await this.page.locator('#profile-button-popup').getByRole('link').click();
     await expect(this.page.getByText(userEmail)).toBeVisible();
   }
