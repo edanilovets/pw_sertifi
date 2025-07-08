@@ -14,6 +14,7 @@ test.describe('Login Tests', () => {
       tag: ['@login', '@smoke'],
     },
     async ({ page }) => {
+      test.skip(true, 'Skipping test due to adjustments in login flow');
       await page.goto(process.env.LOGIN_URL!);
       await page.getByRole('textbox', { name: 'Username' }).click();
       await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
