@@ -1,12 +1,5 @@
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
-
-async function secureFill(locator: Locator, value: string) {
-  await locator.fill('*****'); // masks the value in the Playwright report
-  await locator.evaluate((el, val) => {
-    (el as HTMLInputElement).value = val;
-  }, value);
-}
 
 test.describe('Login Tests', () => {
   test(

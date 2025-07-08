@@ -1,4 +1,4 @@
-import { test, expect, Locator } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/login.page';
 
 test.describe('Send Authorization Tests', () => {
