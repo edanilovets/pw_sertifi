@@ -1,4 +1,5 @@
 import { test, expect, Locator } from '@playwright/test';
+import { LoginPage } from '../pages/login.page';
 
 async function secureFill(locator: Locator, value: string) {
   await locator.fill('*****'); // masks the value in the Playwright report
@@ -15,12 +16,9 @@ test.describe('Login Tests', () => {
     },
     async ({ page }) => {
       test.skip(true, 'Skipping test due to adjustments in login flow');
-      await page.goto(process.env.LOGIN_URL!);
-      await page.getByRole('textbox', { name: 'Username' }).click();
-      await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
-      await page.getByRole('textbox', { name: 'Password' }).click();
-      await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
-      await page.getByRole('button', { name: 'log in' }).click();
+      const loginPage = new LoginPage(page);
+      await loginPage.open();
+      await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
       // Wait for the page to load and the profile button to appear
       await page.locator('#profile-button-popup').getByRole('link').click();
       await expect(page.getByText(process.env.USER_EMAIL!)).toBeVisible();

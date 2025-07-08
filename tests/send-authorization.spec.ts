@@ -1,20 +1,11 @@
 import { test, expect, Locator } from '@playwright/test';
-
-async function secureFill(locator: Locator, value: string) {
-  await locator.fill('*****'); // masks the value in the Playwright report
-  await locator.evaluate((el, val) => {
-    (el as HTMLInputElement).value = val;
-  }, value);
-}
+import { LoginPage } from '../pages/login.page';
 
 test.describe('Send Authorization Tests', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(process.env.LOGIN_URL!);
-    await page.getByRole('textbox', { name: 'Username' }).click();
-    await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
-    await page.getByRole('textbox', { name: 'Password' }).click();
-    await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
-    await page.getByRole('button', { name: 'log in' }).click();
+    const loginPage = new LoginPage(page);
+    await loginPage.open();
+    await loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
   });
 
   test('Test should Send Authorization', async ({ page }) => {
