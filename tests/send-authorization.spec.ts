@@ -4,8 +4,8 @@ import { App } from '../app/app';
 test.describe('Send Authorization Tests', () => {
   test.beforeEach(async ({ page }) => {
     const app = new App(page);
-    await app.loginPage.open();
-    await app.loginPage.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
+    await app.login.open();
+    await app.login.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
   });
 
   test('Test should Send Authorization', async ({ page }) => {
