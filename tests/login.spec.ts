@@ -8,12 +8,16 @@ async function secureFill(locator: Locator, value: string) {
 }
 
 test(
-  'test should login',
+  'Test should login',
   {
     tag: ['@login', '@smoke'],
   },
   async ({ page }) => {
-    await page.goto('/');
-
+    await page.goto(process.env.LOGIN_URL!);
+    await page.getByRole('textbox', { name: 'Username' }).click();
+    await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
+    await page.getByRole('textbox', { name: 'Password' }).click();
+    await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
+    await page.getByRole('button', { name: 'log in' }).click();
   },
 );
