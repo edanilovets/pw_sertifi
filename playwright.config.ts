@@ -28,7 +28,7 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.NG_BASE_URL!,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    headless: process.env.CI ? true : false,
+    // headless: process.env.CI ? true : false,
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: {
