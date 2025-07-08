@@ -7,20 +7,22 @@ async function secureFill(locator: Locator, value: string) {
   }, value);
 }
 
-test(
-  'Test should login',
-  {
-    tag: ['@login', '@smoke'],
-  },
-  async ({ page }) => {
-    await page.goto(process.env.LOGIN_URL!);
-    await page.getByRole('textbox', { name: 'Username' }).click();
-    await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
-    await page.getByRole('textbox', { name: 'Password' }).click();
-    await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
-    await page.getByRole('button', { name: 'log in' }).click();
-    // Wait for the page to load and the profile button to appear
-    await page.locator('#profile-button-popup').getByRole('link').click();
-    await expect(page.getByText(process.env.USER_EMAIL!)).toBeVisible();
-  },
-);
+test.describe('Login Tests', () => {
+  test(
+    'Test should login successfully',
+    {
+      tag: ['@login', '@smoke'],
+    },
+    async ({ page }) => {
+      await page.goto(process.env.LOGIN_URL!);
+      await page.getByRole('textbox', { name: 'Username' }).click();
+      await page.getByRole('textbox', { name: 'Username' }).fill(process.env.USER_EMAIL!);
+      await page.getByRole('textbox', { name: 'Password' }).click();
+      await secureFill(page.getByRole('textbox', { name: 'Password' }), process.env.USER_PASSWORD!);
+      await page.getByRole('button', { name: 'log in' }).click();
+      // Wait for the page to load and the profile button to appear
+      await page.locator('#profile-button-popup').getByRole('link').click();
+      await expect(page.getByText(process.env.USER_EMAIL!)).toBeVisible();
+    },
+  );
+});
