@@ -1,15 +1,12 @@
-import { test } from '@playwright/test';
-import { App } from '../app/app';
+import { test } from '../app/fixtures/app-fixture';
 
 test.describe('Send Authorization tests', () => {
-  test.beforeEach(async ({ page }) => {
-    const app = new App(page);
+  test.beforeEach(async ({ app }) => {
     await app.login.open();
     await app.login.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
   });
 
-  test('Test should Send Authorization', async ({ page }) => {
-    const app = new App(page);
+  test('Test should Send Authorization', async ({ app }) => {
     await app.dashboard.expectLoaded();
     await app.sendAuthorization.open();
     await app.sendAuthorization.fillAndSend('auth1', 'QA Master', 'Hyatt Regency McCormick Place Credit Card Authorization');

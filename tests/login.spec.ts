@@ -1,5 +1,4 @@
-import { test } from '@playwright/test';
-import { App } from '../app/app';
+import { test } from '../app/fixtures/app-fixture';
 
 test.describe('Login Tests', () => {
   test(
@@ -7,9 +6,8 @@ test.describe('Login Tests', () => {
     {
       tag: ['@login', '@smoke'],
     },
-    async ({ page }) => {
+    async ({ app }) => {
       //test.skip(true, 'Skipping test due to adjustments in login flow');
-      const app = new App(page);
       await app.login.open();
       await app.login.login(process.env.USER_EMAIL!, process.env.USER_PASSWORD!);
       // Wait for the page to load and the profile button to appear
