@@ -1,5 +1,10 @@
 import { type Page, type Locator } from '@playwright/test';
 
+export interface LoadableComponent {
+  open(): Promise<void>;
+  expectLoaded(): Promise<void>;
+}
+
 export abstract class BaseComponent {
   constructor(protected page: Page) {}
 

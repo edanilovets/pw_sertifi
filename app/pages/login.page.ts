@@ -1,6 +1,6 @@
 import { BaseComponent } from '../base.component';
 
-export class LoginPage extends BaseComponent {
+export class Login extends BaseComponent {
   async open() {
     await this.page.goto(process.env.LOGIN_URL!);
   }

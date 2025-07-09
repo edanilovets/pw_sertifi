@@ -1,9 +1,14 @@
 import { expect } from '@playwright/test';
-import { BaseComponent } from '../base.component';
+import { BaseComponent, LoadableComponent } from '../base.component';
 
-export class DashboardPage extends BaseComponent {
+export class Dashboard extends BaseComponent implements LoadableComponent {
   async open() {
     await this.page.goto(process.env.NG_BASE_URL!);
+  }
+
+  async expectLoaded() {
+    await this.page.getByRole('heading', { name: 'Dashboard' }).waitFor();
+    await this.page.getByRole('link', { name: 'Load Data' }).waitFor({ state: 'visible' });
   }
 
   async expectUserToBeLoogedIn(userEmail: string) {
