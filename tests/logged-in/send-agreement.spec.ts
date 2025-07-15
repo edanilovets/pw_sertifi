@@ -1,4 +1,4 @@
-import { test } from '../../app/fixtures/app-fixture';
+import { test } from '../../app/fixtures/index';
 
 test.describe('Send Agreement tests', () => {
   test('Test should Send Agreement', async ({ app }) => {

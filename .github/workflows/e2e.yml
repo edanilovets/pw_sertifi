@@ -22,8 +22,8 @@ jobs:
         echo NG_BASE_URL="${{ secrets.NG_BASE_URL }}" >> .env
         echo USER_EMAIL="${{ secrets.USER_EMAIL }}" >> .env
         echo USER_PASSWORD="${{ secrets.USER_PASSWORD }}" >> .env
-    - name: Run e2e tests
-      run: npx playwright test
+    - name: Run e2e logged-in tests
+      run: npm run logged-in
     - uses: actions/upload-artifact@v4
       if: always()
       with:

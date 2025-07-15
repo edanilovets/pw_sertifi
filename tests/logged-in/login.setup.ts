@@ -1,4 +1,4 @@
-import { test as setup } from '../../app/fixtures/app-fixture';
+import { test as setup } from '../../app/fixtures/index';
 import { STORAGE_STATE } from '../../playwright.config';
 
 setup('Log user in and verify profile access', async ({ app, page }) => {
