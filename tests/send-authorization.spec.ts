@@ -10,6 +10,7 @@ test.describe('Send Authorization tests', () => {
     await app.dashboard.expectLoaded();
     await app.sendAuthorization.open();
     await app.sendAuthorization.fillAndSend('auth1', 'QA Master', 'Hyatt Regency McCormick Place Credit Card Authorization');
+    await app.confirmation.expectLoaded();
     await app.confirmation.backToDashboard();
     await app.dashboard.expectLoaded();
   });
