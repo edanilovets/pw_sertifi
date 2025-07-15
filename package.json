@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Sertifi Automation framework using Playwright",
   "scripts": {
-    "test": "npx playwright test --project=chromium"
+    "logged-in": "npx playwright test --project='logged-in chrome'"
   },
   "keywords": [],
   "author": "Eugene Danilovets",

@@ -7,12 +7,12 @@ export class Dashboard extends BaseComponent implements LoadableComponent {
   }
 
   async expectLoaded() {
-    await this.page.getByRole('heading', { name: 'Dashboard' }).waitFor({ timeout: 60000});
+    await this.page.getByRole('heading', { name: 'Dashboard' }).waitFor({ timeout: 60_000 });
     await this.page.getByRole('link', { name: 'Load Data' }).waitFor({ state: 'visible' });
   }
 
   async expectUserToBeLoogedIn(userEmail: string) {
     await this.page.locator('#profile-button-popup').getByRole('link').click();
-    await expect(this.page.getByText(userEmail)).toBeVisible( { timeout: 30000 });
+    await expect(this.page.getByText(userEmail)).toBeVisible({ timeout: 30_000 });
   }
 }
