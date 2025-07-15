@@ -1,4 +1,4 @@
-import { test } from '../app/fixtures/app-fixture';
+import { test } from '../app/fixtures';
 
 test.describe('Login Tests', () => {
   test(
