@@ -1,10 +1,14 @@
+import { step } from '../../misc/step';
 import { BaseComponent, LoadableComponent } from '../base.component';
 
 export class SendAgreement extends BaseComponent implements LoadableComponent {
+
+  @step()
   async open() {
     await this.page.goto('/SendingProcess');
   }
 
+  @step()
   async expectLoaded() {
     await this.page.getByRole('heading', { name: 'Create Folder' }).waitFor();
     await this.page.getByRole('textbox', { name: 'Folder Name *' }).waitFor({
@@ -12,6 +16,7 @@ export class SendAgreement extends BaseComponent implements LoadableComponent {
     });
   }
 
+  @step()
   async sendDocumentFromLibrary(folderName: string, firstParticipant: string, documentName: string) {
     await this.page.getByRole('textbox', { name: 'Folder Name *' }).fill(folderName);
     await this.page.locator('.k-input-values').first().click();

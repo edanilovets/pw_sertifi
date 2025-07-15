@@ -4,6 +4,7 @@ test.describe('Send Authorization tests', () => {
   test(
     'Test should Send Authorization',
     {
+      annotation: [{ type: 'JIRA', description: 'QA-1234' }],
       tag: ['@smoke', '@authorization'],
     },
     async ({ app }) => {

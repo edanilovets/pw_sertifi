@@ -4,6 +4,8 @@ test.describe('Send Agreement tests', () => {
   test(
     'Test should Send Agreement',
     {
+      annotation: [{ type: 'JIRA', description: 'QA-3333' }],
+
       tag: ['@smoke', '@agreement'],
     },
     async ({ app }) => {
