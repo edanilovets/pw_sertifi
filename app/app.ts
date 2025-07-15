@@ -4,8 +4,11 @@ import { Login } from './pages/login.page';
 import { SendAuthorization } from './pages/send-authorization.page';
 import { Confirmation } from './pages/confirmation.page';
 import { SendAgreement } from './pages/send-agreement.page';
+import { API } from './api';
 
 export class App extends BaseComponent {
+  api = new API(this.page.request);
+
   login = new Login(this.page);
   dashboard = new Dashboard(this.page);
   sendAuthorization = new SendAuthorization(this.page);
