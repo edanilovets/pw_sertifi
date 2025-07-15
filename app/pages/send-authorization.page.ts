@@ -15,7 +15,7 @@ export class SendAuthorization extends BaseComponent implements LoadableComponen
     });
   }
 
-  async fillAndSend(folderName: string, firstParticipant: string, documentName: string) {
+  async send(folderName: string, firstParticipant: string, documentName: string) {
     await this.page.getByRole('textbox', { name: 'Folder Name *' }).fill(folderName);
     await this.page.locator('.k-input-values').first().click();
     await this.page.getByText(firstParticipant).click();
