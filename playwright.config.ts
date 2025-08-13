@@ -37,7 +37,7 @@ export default defineConfig({
       mode: 'retain-on-failure',
     },
   },
-  timeout: 300_000,
+  timeout: 90_000,
 
   /* Configure projects for major browsers */
   projects: [

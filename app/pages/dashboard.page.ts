@@ -11,7 +11,7 @@ export class Dashboard extends BaseComponent implements LoadableComponent {
   @step()
   async expectLoaded() {
     await this.page.getByRole('heading', { name: 'Dashboard' }).waitFor({ timeout: 60_000 });
-    await this.page.getByRole('link', { name: 'Load Data' }).waitFor({ state: 'visible' });
+    await this.page.getByRole('button', { name: 'Load data' }).waitFor({ state: 'visible' });
   }
 
   @step()
